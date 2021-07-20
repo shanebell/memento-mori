@@ -1,0 +1,32 @@
+html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+body {
+    padding: 20px;
+}
+
+#info {
+    padding-bottom: 20px;
+}
+
+#save {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#error-message {
+    display: none;
+}
+
+#confirmation-message {
+    padding-left: 10px;
+    color: green;
+}
+
+.hidden {
+    display: none;
+}

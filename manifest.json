@@ -1,0 +1,16 @@
+{
+  "name": "Memento mori",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Memento mori",
+  "permissions": [
+    "storage"
+  ],
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  }
+}
