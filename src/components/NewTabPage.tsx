@@ -33,7 +33,7 @@ const generateGraph = (dob: number, expectancy: number, mode: "WEEKS" | "DAYS") 
         content += " ";
       }
     }
-    content += i < characterChange ? "X" : ".";
+    content += i < characterChange ? "X" : "\u00B7";
   }
   return content;
 };
