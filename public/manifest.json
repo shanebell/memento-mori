@@ -9,8 +9,5 @@
   "chrome_url_overrides" : {
     "newtab": "index.html"
   },
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
-  }
+  "options_page": "index.html?page=options"
 }
