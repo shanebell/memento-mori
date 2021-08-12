@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { loadOptionsFromStorage, Options } from "../storage";
+import useWindowDimensions from "./useWindowDimensions";
+import { round } from "lodash";
 
 const generateGraph = (dob: number, expectancy: number, mode: "WEEKS" | "DAYS") => {
   let columns = 0;
@@ -38,9 +40,8 @@ const generateGraph = (dob: number, expectancy: number, mode: "WEEKS" | "DAYS") 
 
 const useStyles = makeStyles(() => ({
   pre: {
-    fontSize: "0.75em",
-    lineHeight: "1.25em",
     margin: 0,
+    lineHeight: 1.2,
   },
   wrapper: {
     display: "flex",
@@ -50,9 +51,19 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const calculateStyles = (width: number, height: number, content: string) => {
+  const numLines = (content.match(/\n/g) || []).length + 1;
+  const buffer = height * 0.25;
+  const lineHeight = round((height - buffer) / numLines, 1);
+
+  return { fontSize: `${lineHeight}px` };
+};
+
 const NewTabPage = () => {
-  const [content, setContent] = useState<string>("");
   const classes = useStyles();
+
+  const [content, setContent] = useState<string>("");
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     loadOptionsFromStorage((values: Options) => {
@@ -65,7 +76,9 @@ const NewTabPage = () => {
 
   return (
     <div className={classes.wrapper}>
-      <pre className={classes.pre}>{content}</pre>
+      <pre className={classes.pre} style={calculateStyles(width, height, content)}>
+        {content}
+      </pre>
     </div>
   );
 };
