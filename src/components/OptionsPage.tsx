@@ -65,6 +65,7 @@ const OptionsPage = () => {
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
 
   useEffect(() => {
+    document.title = "Memento mori";
     loadOptionsFromStorage((options) => {
       setOptionsForm(toOptionsForm(options));
     });
