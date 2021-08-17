@@ -3,13 +3,11 @@ import { isLocal } from "./config";
 export interface Options {
   dob: string;
   expectancy: number;
-  mode: "WEEKS" | "DAYS";
 }
 
 const DEFAULT_OPTIONS: Options = {
   dob: "1985-10-26",
   expectancy: 80,
-  mode: "WEEKS",
 };
 
 const storage = {

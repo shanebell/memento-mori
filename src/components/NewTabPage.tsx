@@ -4,20 +4,10 @@ import { loadOptionsFromStorage, Options } from "../storage";
 import useWindowDimensions from "./useWindowDimensions";
 import { round } from "lodash";
 
-const generateGraph = (dob: number, expectancy: number, mode: "WEEKS" | "DAYS") => {
-  let columns = 0;
-  let columnBreak = 0;
-  let characterChange = 0;
-
-  if (mode === "WEEKS") {
-    columns = 52;
-    columnBreak = 4;
-    characterChange = (Date.now() - dob) / (1000 * 60 * 60 * 24 * 7);
-  } else if (mode === "DAYS") {
-    columns = 364;
-    columnBreak = 7;
-    characterChange = (Date.now() - dob) / (1000 * 60 * 60 * 24);
-  }
+const generateGraph = (dob: number, expectancy: number) => {
+  const columns = 52;
+  const columnBreak = 4;
+  const characterChange = (Date.now() - dob) / (1000 * 60 * 60 * 24 * 7);
 
   let content = "";
   for (let i = 0; i < expectancy * columns; i++) {
@@ -69,8 +59,7 @@ const NewTabPage = () => {
     loadOptionsFromStorage((values: Options) => {
       const expectancy = values.expectancy;
       const dob = Date.parse(values.dob);
-      const mode = values.mode;
-      setContent(generateGraph(dob, expectancy, mode));
+      setContent(generateGraph(dob, expectancy));
     });
   }, []);
 

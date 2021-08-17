@@ -2,8 +2,9 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { loadOptionsFromStorage, Options, saveOptionsToStorage } from "../storage";
 import { isEmpty, toInteger, toString } from "lodash";
+import image from "../images/memento-mori.png";
 
-import { Button, Container, Grid, MenuItem, Paper, Snackbar, TextField, Typography } from "@material-ui/core";
+import { Button, Container, Grid, Paper, Snackbar, TextField, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -13,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "center",
   },
   info: {
-    marginBottom: theme.spacing(4),
+    marginBottom: theme.spacing(2),
     textAlign: "center",
   },
   paper: {
@@ -26,25 +27,38 @@ const useStyles = makeStyles((theme: Theme) => ({
   snackbar: {
     textAlign: "center",
   },
+  logo: {
+    display: "flex",
+    justifyContent: "center",
+    marginBottom: theme.spacing(2),
+  },
+  image: {
+    width: "64px",
+    height: "64px",
+  },
+  attribution: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: theme.spacing(4),
+    opacity: "0.75",
+    filter: "grayscale(100%)",
+  },
 }));
 
 interface OptionsForm {
   dob: string;
   expectancy: string;
-  mode: "WEEKS" | "DAYS";
 }
 
 interface Errors {
   dob?: string;
   expectancy?: string;
-  mode?: string;
 }
 
 const toOptions = (optionsForm: OptionsForm): Options => {
   return {
     dob: optionsForm.dob,
     expectancy: toInteger(optionsForm.expectancy),
-    mode: optionsForm.mode,
   };
 };
 
@@ -52,14 +66,13 @@ const toOptionsForm = (options: Options): OptionsForm => {
   return {
     dob: options.dob,
     expectancy: toString(options.expectancy),
-    mode: options.mode,
   };
 };
 
 const OptionsPage = () => {
   const classes = useStyles();
 
-  const [optionsForm, setOptionsForm] = useState<OptionsForm>({ dob: "", expectancy: "", mode: "WEEKS" });
+  const [optionsForm, setOptionsForm] = useState<OptionsForm>({ dob: "", expectancy: "" });
   const [errors, setErrors] = useState<Errors>({});
   const [saving, setSaving] = useState<boolean>(false);
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
@@ -91,11 +104,6 @@ const OptionsPage = () => {
       validationErrors.dob = "Date of birth must be in the past";
     }
 
-    const mode = optionsForm.mode;
-    if (mode !== "WEEKS" && mode !== "DAYS") {
-      validationErrors.mode = "Invalid mode";
-    }
-
     return validationErrors;
   };
 
@@ -121,8 +129,12 @@ const OptionsPage = () => {
         Memento mori
       </Typography>
 
+      <div className={classes.logo}>
+        <img src={image} alt="JaSON logo" className={classes.image} />
+      </div>
+
       <Typography variant="h6" className={classes.info}>
-        Remember... life is short and you'll be dead soon 💀
+        Remember... life is short and you'll be dead soon
       </Typography>
 
       <Paper variant="outlined" square className={classes.paper}>
@@ -155,23 +167,6 @@ const OptionsPage = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <TextField
-              select
-              label="Mode"
-              variant="outlined"
-              required
-              error={!!errors.mode}
-              helperText={errors.mode}
-              value={optionsForm.mode}
-              onChange={handleFieldChange("mode")}
-              fullWidth
-            >
-              <MenuItem value="WEEKS">Weeks</MenuItem>
-              <MenuItem value="DAYS">Days</MenuItem>
-            </TextField>
-          </Grid>
-
-          <Grid item xs={12}>
             <div className={classes.actions}>
               <Button variant="outlined" color="primary" size="large" onClick={save} disabled={saving}>
                 Save
@@ -180,6 +175,17 @@ const OptionsPage = () => {
           </Grid>
         </Grid>
       </Paper>
+
+      <Typography variant="caption" className={classes.attribution}>
+        Icons made by&nbsp;
+        <a href="https://www.freepik.com" target="_blank">
+          Freepik
+        </a>
+        &nbsp;from&nbsp;
+        <a href="https://www.flaticon.com/" target="_blank">
+          www.flaticon.com
+        </a>
+      </Typography>
 
       <Snackbar
         anchorOrigin={{

@@ -9,5 +9,10 @@
   "chrome_url_overrides" : {
     "newtab": "index.html"
   },
-  "options_page": "index.html?page=options"
+  "options_page": "index.html?page=options",
+  "icons": {
+    "128": "memento-mori-128x128.png",
+    "256": "memento-mori-256x256.png",
+    "512": "memento-mori-512x512.png"
+  }
 }
