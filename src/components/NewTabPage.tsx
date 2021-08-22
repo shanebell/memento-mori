@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { loadOptionsFromStorage, Options } from "../storage";
 import useWindowDimensions from "./useWindowDimensions";
 import { round } from "lodash";
+import "@fontsource/source-code-pro";
 
 const generateGraph = (dob: number, expectancy: number) => {
   const columns = 52;
@@ -32,6 +33,7 @@ const useStyles = makeStyles(() => ({
   pre: {
     margin: 0,
     lineHeight: 1.2,
+    fontFamily: "Source Code Pro",
   },
   wrapper: {
     display: "flex",
