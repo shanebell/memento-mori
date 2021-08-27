@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import NewTabPage from "./components/NewTabPage";
 import OptionsPage from "./components/OptionsPage";
 import "@fontsource/roboto";
+import "@fontsource/source-code-pro";
 import { CssBaseline } from "@material-ui/core";
 
 const params = new URLSearchParams(window.location.search);
