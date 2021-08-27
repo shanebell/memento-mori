@@ -178,11 +178,11 @@ const OptionsPage = () => {
 
       <Typography variant="caption" className={classes.attribution}>
         Icons made by&nbsp;
-        <a href="https://www.freepik.com" target="_blank">
+        <a href="https://www.freepik.com" target="_blank" rel="noreferrer">
           Freepik
         </a>
         &nbsp;from&nbsp;
-        <a href="https://www.flaticon.com/" target="_blank">
+        <a href="https://www.flaticon.com/" target="_blank" rel="noreferrer">
           www.flaticon.com
         </a>
       </Typography>

@@ -1,6 +1,6 @@
 {
   "name": "Memento mori",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 2,
   "description": "Memento mori - show a life calendar as the 'New tab' page in Chrome",
   "permissions": [
