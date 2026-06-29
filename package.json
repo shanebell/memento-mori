@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "REACT_APP_ENVIRONMENT=local react-scripts start",
-    "build": "INLINE_RUNTIME_CHUNK=false GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider INLINE_RUNTIME_CHUNK=false GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
